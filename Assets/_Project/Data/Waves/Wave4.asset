@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d8980f126fa77e469a0e6b51f246454, type: 3}
+  m_Name: Wave4
+  m_EditorClassIdentifier: Assembly-CSharp::Hordewood.Core.WaveData
+  displayName: Wave 4
+  duration: 55
+  enemyTypes:
+  - {fileID: 4899086893030793475, guid: 38df359493e0382408908169c91cc8dc, type: 3}
+  spawnInterval: 4
+  spawnsPerInterval: 3

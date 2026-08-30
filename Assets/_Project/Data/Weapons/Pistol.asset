@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de64cef79fb772e4fb351438cdeef57a, type: 3}
+  m_Name: Pistol
+  m_EditorClassIdentifier: Assembly-CSharp::Hordewood.Weapon.Gun
+  displayName: Pistol
+  icon: {fileID: 173883159, guid: 30818eaa51c14124eac3c0c6dfe0d6e9, type: 3}
+  muzzleOffset: {x: -0.25, y: 0.125}
+  damage: 5
+  fireRate: 300
+  capacity: 12
+  reloadTime: 1.5
+  bulletSpeed: 15
+  range: 8
+  fireMode: 0
+  burstCount: 3
