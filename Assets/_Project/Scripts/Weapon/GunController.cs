@@ -1,6 +1,4 @@
 using Hordewood.Input;
-using System;
-using System.Security.Claims;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,7 +9,9 @@ namespace Hordewood.Weapons
         [SerializeField] private Gun gun;
         [SerializeField] private Transform firePoint;
         [SerializeField] private Bullet bulletPrefab;
+        [SerializeField] private WeaponPickup weaponPickupPrefab;
         [SerializeField] private WeaponVisual weaponVisual;
+        [SerializeField] private AudioSource audioSource;
         [SerializeField] private float aimStickDeadzone = 0.5f;
 
         [Header("Aim Assist (Gamepad only)")]
@@ -31,8 +31,11 @@ namespace Hordewood.Weapons
         private int _currentAmmo;
         private bool _isReloading;
         private float _reloadTimer;
+        private bool _isBursting;
+        private int _burstShotsRemaining;
+        private float _burstTimer;
 
-        public event Action<int, int> OnAmmoChanged;
+        public event System.Action<int, int> OnAmmoChanged;
 
         private void OnEnable()
         {
@@ -73,6 +76,12 @@ namespace Hordewood.Weapons
                 return;
             }
 
+            if (_isBursting)
+            {
+                UpdateBurst();
+                return;
+            }
+
             if (_controls.Player.Reload.WasPressedThisFrame() && _currentAmmo < gun.Capacity)
             {
                 StartReload();
@@ -93,8 +102,12 @@ namespace Hordewood.Weapons
 
             if (wantsToFire && _fireTimer <= 0f)
             {
-                Fire();
-                _fireTimer = 60f / gun.FireRate;
+                if (gun.FireMode == FireMode.Burst)
+                    StartBurst();
+                else
+                    Fire();
+
+                _fireTimer = gun.SecondsBetweenShots;
             }
         }
 
@@ -150,14 +163,62 @@ namespace Hordewood.Weapons
             return Vector2.Lerp(rawDirection, toTarget, aimAssistStrength).normalized;
         }
 
+        private void StartBurst()
+        {
+            _isBursting = true;
+            _burstShotsRemaining = gun.BurstCount;
+            _burstTimer = 0f;
+        }
+
+        private void UpdateBurst()
+        {
+            _burstTimer -= Time.deltaTime;
+            if (_burstTimer > 0f) return;
+
+            if (_currentAmmo <= 0)
+            {
+                _isBursting = false;
+                StartReload();
+                return;
+            }
+
+            Fire();
+            _burstShotsRemaining--;
+            _burstTimer = gun.BurstShotDelay;
+
+            if (_burstShotsRemaining <= 0)
+                _isBursting = false;
+        }
+
         private void Fire()
         {
             _currentAmmo--;
             OnAmmoChanged?.Invoke(_currentAmmo, gun.Capacity);
 
+            audioSource.PlayOneShot(gun.FireSound);
+
+            if (gun.FireMode == FireMode.Spread)
+                FireSpread();
+            else
+                FireSingleBullet(firePoint.right);
+        }
+
+        private void FireSpread()
+        {
+            for (int i = 0; i < gun.PelletCount; i++)
+            {
+                float angleOffset = Random.Range(-gun.SpreadAngle * 0.5f, gun.SpreadAngle * 0.5f);
+                Vector2 pelletDirection = Quaternion.Euler(0f, 0f, angleOffset) * firePoint.right;
+                FireSingleBullet(pelletDirection);
+            }
+        }
+
+        private void FireSingleBullet(Vector2 direction)
+        {
             Vector2 muzzlePos = weaponVisual.GetMuzzlePosition();
-            Bullet bullet = Instantiate(bulletPrefab, muzzlePos, firePoint.rotation);
-            bullet.Init(firePoint.right, gun.BulletSpeed, gun.Damage, gun.Range);
+            Bullet bullet = Instantiate(bulletPrefab, muzzlePos, Quaternion.LookRotation(Vector3.forward, direction));
+            bullet.transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
+            bullet.Init(direction, gun.BulletSpeed, gun.Damage, gun.Range);
         }
 
         private void StartReload()
@@ -170,7 +231,28 @@ namespace Hordewood.Weapons
         {
             _isReloading = false;
             _currentAmmo = gun.Capacity;
+            _fireTimer = 0f;
             OnAmmoChanged?.Invoke(_currentAmmo, gun.Capacity);
+        }
+
+        public void EquipGun(Gun newGun)
+        {
+            if (gun != null)
+                DropCurrentGun();
+
+            gun = newGun;
+            _currentAmmo = gun.Capacity;
+            _isReloading = false;
+            _isBursting = false;
+            _fireTimer = 0f;
+            weaponVisual.SetGun(gun);
+            OnAmmoChanged?.Invoke(_currentAmmo, gun.Capacity);
+        }
+
+        private void DropCurrentGun()
+        {
+            WeaponPickup dropped = Instantiate(weaponPickupPrefab, transform.position, Quaternion.identity);
+            dropped.Init(gun);
         }
 
         public bool IsReloading => _isReloading;

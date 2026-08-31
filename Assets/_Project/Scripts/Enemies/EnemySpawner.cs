@@ -18,6 +18,7 @@ namespace Hordewood.Enemies
         private void Update()
         {
             if (GameManager.Instance.CurrentState != GameState.Playing) return;
+            if (!waveManager.IsWaveActive) return;
 
             WaveData wave = waveManager.CurrentWave;
             if (wave == null) return;

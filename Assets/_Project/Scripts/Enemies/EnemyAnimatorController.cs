@@ -11,6 +11,7 @@ namespace Hordewood.Enemies
         [SerializeField] private string animationPrefix;
         [SerializeField] private Color hitFlashColor = Color.red;
         [SerializeField] private float hitFlashDuration = 0.1f;
+        [SerializeField] private float corpseLingerTime = 1f;
 
         private Animator _animator;
         private SpriteRenderer _spriteRenderer;
@@ -48,7 +49,7 @@ namespace Hordewood.Enemies
             string state = $"{animationPrefix}_{suffix}";
             float length = GetClipLength(state);
 
-            yield return new WaitForSeconds(length + 1f);
+            yield return new WaitForSeconds(length + corpseLingerTime);
             onComplete?.Invoke();
         }
 

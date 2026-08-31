@@ -23,6 +23,8 @@ namespace Hordewood.World
         [SerializeField] private float waterThreshold = 0.4f;
         [SerializeField] private int seed;
 
+        public event System.Action OnWorldGenerated;
+
         private void Start() => Generate();
 
         [ContextMenu("Generate World")]
@@ -48,6 +50,8 @@ namespace Hordewood.World
                     tilemap.SetTile(cellPos, grassTile);
                 }
             }
+
+            OnWorldGenerated?.Invoke();
         }
 
         [ContextMenu("Clear World")]
@@ -73,5 +77,8 @@ namespace Hordewood.World
 
         public Vector3Int WorldToCell(Vector2 worldPos) => tilemap.WorldToCell(worldPos);
         public Vector2 CellToWorld(Vector3Int cellPos) => tilemap.GetCellCenterWorld(cellPos);
+
+        public int Width => width;
+        public int Height => height;
     }
 }

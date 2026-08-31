@@ -17,6 +17,26 @@
                     "priority": 0
                 },
                 {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "4b71d2be-1cc7-428b-84e2-a63564d68bf9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "Aim",
+                    "type": "Value",
+                    "id": "fe1e5015-421b-40dd-80b7-cbf5b1f09598",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true,
+                    "priority": 0
+                },
+                {
                     "name": "Fire",
                     "type": "Button",
                     "id": "5db64f72-ce91-4f25-ad2b-e4e707818a47",
@@ -37,13 +57,13 @@
                     "priority": 0
                 },
                 {
-                    "name": "Aim",
-                    "type": "Value",
-                    "id": "fe1e5015-421b-40dd-80b7-cbf5b1f09598",
-                    "expectedControlType": "Vector2",
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "d09c233a-668d-4723-bcf3-4a12ca001b4c",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true,
+                    "initialStateCheck": false,
                     "priority": 0
                 }
             ],
@@ -166,6 +186,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e3114ee9-6998-4930-849c-2b79b2ec1c86",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f12e2cf2-9a93-4819-b848-7b8b97ed67c7",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fd446eaa-0668-4aa4-9816-4b7f569af7b9",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "89847f64-b73b-4c57-a010-9148f7848c24",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

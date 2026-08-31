@@ -30,8 +30,9 @@ namespace Hordewood.UI
         {
             if (waveManager.CurrentWave == null) return;
 
-            int mins = Mathf.FloorToInt(waveManager.TimeRemaining / 60f);
-            int secs = Mathf.FloorToInt(waveManager.TimeRemaining % 60f);
+            float time = Mathf.Max(0f, waveManager.TimeRemaining);
+            int mins = Mathf.FloorToInt(time / 60f);
+            int secs = Mathf.FloorToInt(time % 60f);
             waveText.text = $"{_displayedWaveName} — {mins}:{secs:00}";
         }
     }

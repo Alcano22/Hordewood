@@ -487,15 +487,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guns_3
+      name: guns_shotgun
       rect:
         serializedVersion: 2
         x: 144
         y: 471
         width: 21
         height: 9
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.7619048, y: 0.44444445}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2115,15 +2115,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guns_77
+      name: guns_ar
       rect:
         serializedVersion: 2
         x: 192
         y: 254
         width: 36
         height: 10
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.6666667, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2842,7 +2842,6 @@ TextureImporter:
       guns_27: -962436812
       guns_28: 331569728
       guns_29: -1414354335
-      guns_3: -1302414913
       guns_30: -1226036542
       guns_31: -1366819041
       guns_32: 837028471
@@ -2894,7 +2893,6 @@ TextureImporter:
       guns_74: 1830300755
       guns_75: -631263269
       guns_76: 175362687
-      guns_77: 824346721
       guns_78: 1769745719
       guns_79: -1367627385
       guns_8: -23654891
@@ -2919,7 +2917,9 @@ TextureImporter:
       guns_97: -1457420715
       guns_98: -1533618451
       guns_99: -429976628
+      guns_ar: 824346721
       guns_pistol: 173883159
+      guns_shotgun: -1302414913
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

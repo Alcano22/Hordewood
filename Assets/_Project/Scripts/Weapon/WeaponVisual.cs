@@ -5,7 +5,6 @@ namespace Hordewood.Weapons
     public class WeaponVisual : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer spriteRenderer;
-        [SerializeField] private float orbitRadius = 0.6f;
 
         private Vector2 _muzzleOffset;
         private bool _isFlipped;
@@ -13,13 +12,13 @@ namespace Hordewood.Weapons
         private void Awake()
         {
             transform.localRotation = Quaternion.Euler(0f, 0f, 180f);
-            transform.localPosition = new Vector3(orbitRadius, 0f, 0f);
         }
 
         public void SetGun(Gun gun)
         {
             spriteRenderer.sprite = gun.Icon;
             _muzzleOffset = gun.MuzzleOffset;
+            transform.localScale = new Vector3(gun.VisualScale, gun.VisualScale, 1f);
         }
 
         private void LateUpdate()

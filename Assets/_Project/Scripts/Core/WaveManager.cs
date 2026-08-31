@@ -67,5 +67,6 @@ namespace Hordewood.Core
         }
 
         public float TimeRemaining => _waveTimer;
+        public bool IsWaveActive => _waveActive;
     }
 }

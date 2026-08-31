@@ -268,6 +268,7 @@ MonoBehaviour:
   animationPrefix: Goblin
   hitFlashColor: {r: 1, g: 0, b: 0, a: 1}
   hitFlashDuration: 0.1
+  corpseLingerTime: 1
 --- !u!95 &7663762712082360079
 Animator:
   serializedVersion: 7
@@ -337,7 +338,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 2572365745140355499, guid: cdb1f98b301eb514ca8d1d88c1780499, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
