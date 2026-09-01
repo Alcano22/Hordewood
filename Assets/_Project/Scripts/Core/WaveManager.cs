@@ -1,24 +1,37 @@
 ﻿using UnityEngine;
-using System;
-using System.Collections;
 using Hordewood.Enemies;
+using Hordewood.Input;
+using UnityEngine.InputSystem;
 
 namespace Hordewood.Core
 {
     public class WaveManager : MonoBehaviour
     {
         [SerializeField] private WaveData[] waves;
-        [SerializeField] private float delayBetweenWaves = 3f;
 
+        private PlayerControls _controls;
         private int _currentWaveIndex = -1;
         private float _waveTimer;
         private bool _waveActive;
+        private bool _waitingForReady;
 
         public WaveData CurrentWave => _currentWaveIndex >= 0 && _currentWaveIndex < waves.Length
                                      ? waves[_currentWaveIndex] : null;
 
-        public event Action<WaveData> OnWaveStarted;
-        public event Action OnAllWavesComplete;
+        public event System.Action<WaveData> OnWaveStarted;
+        public event System.Action OnWaveEnded;
+        public event System.Action OnAllWavesComplete;
+
+        private void OnEnable()
+        {
+            _controls = PlayerControlsProvider.Instance.Controls;
+            _controls.Player.Ready.performed += OnReadyPressed;
+        }
+
+        private void OnDisable()
+        {
+            _controls.Player.Ready.performed -= OnReadyPressed;
+        }
 
         private void Start() => StartNextWave();
 
@@ -31,6 +44,8 @@ namespace Hordewood.Core
             if (_waveTimer <= 0f)
                 EndWave();
         }
+
+        private void OnReadyPressed(InputAction.CallbackContext ctx) => NotifyPlayerReady();
 
         private void StartNextWave()
         {
@@ -50,7 +65,19 @@ namespace Hordewood.Core
         {
             _waveActive = false;
             KillAllEnemies();
-            StartCoroutine(WaitAndStartNextWave());
+
+            _waitingForReady = true;
+            GameManager.Instance.SetState(GameState.WaveBreak);
+            OnWaveEnded?.Invoke();
+        }
+
+        public void NotifyPlayerReady()
+        {
+            if (!_waitingForReady) return;
+
+            _waitingForReady = false;
+            GameManager.Instance.SetState(GameState.Playing);
+            StartNextWave();
         }
 
         private void KillAllEnemies()
@@ -60,13 +87,8 @@ namespace Hordewood.Core
                 enemy.Kill();
         }
 
-        private IEnumerator WaitAndStartNextWave()
-        {
-            yield return new WaitForSeconds(delayBetweenWaves);
-            StartNextWave();
-        }
-
         public float TimeRemaining => _waveTimer;
         public bool IsWaveActive => _waveActive;
+        public bool IsWaitingForReady => _waitingForReady;
     }
 }

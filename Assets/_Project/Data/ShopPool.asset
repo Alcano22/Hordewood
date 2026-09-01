@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 119ec0d993a643f4183e6a313f36cb6a, type: 3}
+  m_Name: ShopPool
+  m_EditorClassIdentifier: Assembly-CSharp::Hordewood.Items.ShopPool
+  availableGuns:
+  - {fileID: 11400000, guid: e1e66413f7a0cd54f9e05eb721d442ae, type: 2}
+  - {fileID: 11400000, guid: a8acaad8fe726ba4994d471df92144ef, type: 2}
+  - {fileID: 11400000, guid: 49db720defc9ea348af69c929c3521bd, type: 2}
+  availablePassives:
+  - {fileID: 11400000, guid: 18c67bb6608122148b8515645cc6432a, type: 2}
+  - {fileID: 11400000, guid: 1573405cf5a40de4f9c0ac7439bdcf8f, type: 2}
+  - {fileID: 11400000, guid: 301f2a56240d1cc4aa29d5e765f1e5fa, type: 2}
+  - {fileID: 11400000, guid: 860b8827736f12446afeb80714f060ab, type: 2}
+  rarityConfig: {fileID: 11400000, guid: 20fc2f2c471ceb7488409c473dbf3746, type: 2}

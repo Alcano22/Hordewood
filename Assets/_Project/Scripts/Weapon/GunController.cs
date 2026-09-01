@@ -38,9 +38,16 @@ namespace Hordewood.Weapons
 
         public event System.Action<int, int> OnAmmoChanged;
 
+        private void Awake()
+        {
+            _mainCamera = Camera.main;
+            _currentAmmo = gun.Capacity;
+            weaponVisual.SetGun(gun);
+        }
+
         private void OnEnable()
         {
-            _controls.Player.Enable();
+            _controls = PlayerControlsProvider.Instance.Controls;
             _controls.Player.Aim.performed += OnAim;
             _controls.Player.Aim.canceled += OnAim;
         }
@@ -49,15 +56,6 @@ namespace Hordewood.Weapons
         {
             _controls.Player.Aim.performed -= OnAim;
             _controls.Player.Aim.canceled -= OnAim;
-            _controls.Player.Disable();
-        }
-
-        private void Awake()
-        {
-            _controls = new PlayerControls();
-            _mainCamera = Camera.main;
-            _currentAmmo = gun.Capacity;
-            weaponVisual.SetGun(gun);
         }
 
         private void Start()

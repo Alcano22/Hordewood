@@ -8,9 +8,10 @@ namespace Hordewood.Interaction
         private PlayerControls _controls;
         private IInteractable _current;
 
-        private void Awake() => _controls = new PlayerControls();
-        private void OnEnable() => _controls.Player.Enable();
-        private void OnDisable() => _controls.Player.Disable();
+        private void OnEnable()
+        {
+            _controls = PlayerControlsProvider.Instance.Controls;
+        }
 
         private void Update()
         {

@@ -41,5 +41,7 @@ namespace Hordewood.Player
         }
 
         public IReadOnlyList<PassiveItem> ActiveItems => _activeItems;
+
+        public bool HasPassive(PassiveItem item) => _activeItems.Contains(item);
     }
 }

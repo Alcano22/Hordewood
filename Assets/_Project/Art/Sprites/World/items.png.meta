@@ -1904,7 +1904,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: items_64
+      name: items_sneakers
       rect:
         serializedVersion: 2
         x: 0
@@ -6194,7 +6194,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: items_259
+      name: items_ring_health
       rect:
         serializedVersion: 2
         x: 48
@@ -7228,7 +7228,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: items_306
+      name: items_book_firerate
       rect:
         serializedVersion: 2
         x: 32
@@ -7250,7 +7250,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: items_307
+      name: items_book_damage
       rect:
         serializedVersion: 2
         x: 48
@@ -8378,7 +8378,6 @@ TextureImporter:
       items_256: -1569398980
       items_257: 830157549
       items_258: -763146345
-      items_259: 1726713122
       items_26: 1784186740104572286
       items_260: -420321616
       items_261: -1589290010
@@ -8431,8 +8430,6 @@ TextureImporter:
       items_303: -756043996
       items_304: 2066031727
       items_305: -2098194908
-      items_306: -480259826
-      items_307: 64687156
       items_308: -1035547087
       items_309: 1156372519
       items_31: -7162647019817104946
@@ -8510,7 +8507,6 @@ TextureImporter:
       items_61: 8386005727647381285
       items_62: 7419183496887217242
       items_63: -7922772116564282560
-      items_64: -5344007660830287148
       items_65: -1742012962666287389
       items_66: -6556086720143981034
       items_67: 6214652250989123760
@@ -8552,12 +8548,16 @@ TextureImporter:
       items_apple: -1953620579
       items_banana: -1631976438
       items_bone: 7911235102323647998
+      items_book_damage: 64687156
+      items_book_firerate: -480259826
       items_coin: 5755098471613179246
       items_coin_stack: 3386722485073375770
       items_copper_bar: 1313399072
       items_gold_bar: -867667102
       items_iron_bar: 1808478481
+      items_ring_health: 1726713122
       items_rose: -1344262267
+      items_sneakers: -5344007660830287148
       items_sunflower: -117697803
       items_wood: 908000979
       items_wooden_plank: -1192636666

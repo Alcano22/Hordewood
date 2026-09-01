@@ -15,15 +15,11 @@ namespace Hordewood.UI
         private readonly Dictionary<ItemData, InventorySlotUI> _slots = new();
         private PlayerControls _controls;
 
-        private void Awake()
-        {
-            panel.SetActive(false);
-            _controls = new PlayerControls();
-        }
+        private void Awake() => panel.SetActive(false);
 
         private void OnEnable()
         {
-            _controls.Player.Enable();
+            _controls = PlayerControlsProvider.Instance.Controls;
             _controls.Player.ToggleInventory.performed += OnToggleInventory;
         }
 
@@ -36,8 +32,10 @@ namespace Hordewood.UI
         private void OnDisable()
         {
             _controls.Player.ToggleInventory.performed -= OnToggleInventory;
-            _controls.Player.Disable();
+        }
 
+        private void OnDestroy()
+        {
             if (InventorySystem.Instance != null)
                 InventorySystem.Instance.OnItemCountChanged -= UpdateSlot;
         }

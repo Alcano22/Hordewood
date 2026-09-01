@@ -31,12 +31,11 @@ namespace Hordewood.Player
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
-            _controls = new PlayerControls();
         }
 
         private void OnEnable()
         {
-            _controls.Player.Enable();
+            _controls = PlayerControlsProvider.Instance.Controls;
             _controls.Player.Move.performed += OnMove;
             _controls.Player.Move.canceled += OnMove;
             _controls.Player.Dash.performed += OnDash;
@@ -47,7 +46,6 @@ namespace Hordewood.Player
             _controls.Player.Move.performed -= OnMove;
             _controls.Player.Move.canceled -= OnMove;
             _controls.Player.Dash.performed -= OnDash;
-            _controls.Player.Disable();
         }
 
         private void OnMove(InputAction.CallbackContext ctx)

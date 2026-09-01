@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Hordewood.Combat;
+using Hordewood.Core;
 
 namespace Hordewood.Player
 {
@@ -8,6 +9,14 @@ namespace Hordewood.Player
         [SerializeField] private float baseMaxHealth = 100f;
         [SerializeField] private float invulnerabilityDuration = 0.5f;
         [SerializeField] private PlayerStats stats;
+
+        [Header("Camera Shake")]
+        [SerializeField] private CameraShake cameraShake;
+        [SerializeField] private float shakeTrauma = 0.4f;
+
+        [Header("Sprite Tint")]
+        [SerializeField] private SpriteTint spriteTint;
+        [SerializeField] private Color hurtTintColor = Color.red;
 
         public float CurrentHealth { get; private set; }
         public float InvulnerabilityTimer { get; private set; }
@@ -58,6 +67,8 @@ namespace Hordewood.Player
 
             CurrentHealth -= amount;
             InvulnerabilityTimer = invulnerabilityDuration;
+            spriteTint.Flash(hurtTintColor, 0.08f);
+            cameraShake.AddTrauma(shakeTrauma);
 
             OnHealthChanged?.Invoke(CurrentHealth, MaxHealth);
 

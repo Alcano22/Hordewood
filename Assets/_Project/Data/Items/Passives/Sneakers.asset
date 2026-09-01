@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Sneakers
   m_EditorClassIdentifier: Assembly-CSharp::Hordewood.Items.PassiveItem
   displayName: Sneakers
-  icon: {fileID: 0}
+  icon: {fileID: -5344007660830287148, guid: 8d1eaea3d8d0f2b4ea6177b9aa0e1a85, type: 3}
   rarity: 0
+  isUnique: 0
   modifiers:
   - type: 0
-    value: 0.15
+    value: 0.2
     isPercentage: 1

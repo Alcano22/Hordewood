@@ -1,3 +1,4 @@
+using Hordewood.Items;
 using System;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace Hordewood.Weapons
     public class Gun : ScriptableObject
     {
         [SerializeField] private string displayName;
+        [SerializeField] private ItemRarity rarity;
         [SerializeField] private Sprite icon;
         [SerializeField] private Vector2 muzzleOffset;
         [SerializeField] private float visualScale = 1f;
@@ -29,6 +31,7 @@ namespace Hordewood.Weapons
         [SerializeField] private AudioClip fireSound;
 
         public string DisplayName => displayName;
+        public ItemRarity Rarity => rarity;
         public Sprite Icon => icon;
         public Vector2 MuzzleOffset => muzzleOffset;
         public float VisualScale => visualScale;

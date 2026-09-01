@@ -20,6 +20,7 @@ namespace Hordewood.Enemies
         private Rigidbody2D _rb;
         private Transform _target;
         private float _currentHealth;
+        private bool _isDead;
 
         private void Awake()
         {
@@ -54,6 +55,8 @@ namespace Hordewood.Enemies
 
         public void TakeDamage(float amount)
         {
+            if (_isDead) return;
+
             _currentHealth -= amount;
             spriteTint.Flash();
 
@@ -63,7 +66,7 @@ namespace Hordewood.Enemies
 
         public void Kill()
         {
-            if (_currentHealth <= 0f) return;
+            if (_isDead) return;
 
             _currentHealth = 0f;
             Die(false);
@@ -71,6 +74,9 @@ namespace Hordewood.Enemies
 
         private void Die(bool dropLoot)
         {
+            if (_isDead) return;
+            _isDead = true;
+
             enabled = false;
             _rb.linearVelocity = Vector2.zero;
             _rb.simulated = false;
@@ -95,14 +101,14 @@ namespace Hordewood.Enemies
             ItemDropper.Instance.DropFromTable(dropTable, transform.position);
         }
 
-        private void OnCollisionEnter2D(Collision2D collision) => TryDealContactDamage(collision);
-        private void OnCollisionStay2D(Collision2D collision) => TryDealContactDamage(collision);
+        private void OnTriggerEnter2D(Collider2D other) => TryDealContactDamage(other);
+        private void OnTriggerStay2D(Collider2D other) => TryDealContactDamage(other);
 
-        private void TryDealContactDamage(Collision2D collision)
+        private void TryDealContactDamage(Collider2D other)
         {
-            if (!collision.gameObject.CompareTag("Player")) return;
+            if (!other.CompareTag("Player")) return;
 
-            if (collision.gameObject.TryGetComponent<IDamageable>(out var damageable))
+            if (other.TryGetComponent<IDamageable>(out var damageable))
                 damageable.TakeDamage(stats.ContactDamage);
         }
     }

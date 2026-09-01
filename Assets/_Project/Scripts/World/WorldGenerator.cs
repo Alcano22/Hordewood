@@ -1,3 +1,4 @@
+using Hordewood.Core;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -23,7 +24,6 @@ namespace Hordewood.World
         [Header("Noise")]
         [SerializeField] private float noiseScale = 10f;
         [SerializeField] private float waterThreshold = 0.4f;
-        [SerializeField] private int seed;
 
         public event System.Action OnWorldGenerated;
 
@@ -40,8 +40,8 @@ namespace Hordewood.World
 
             _groundGrid = new bool[width, height];
 
-            float offsetX = seed * 10000f;
-            float offsetY = seed * 5000f;
+            float offsetX = GameSeed.CurrentSeed * 10000f;
+            float offsetY = GameSeed.CurrentSeed * 5000f;
 
             for (int y = 0; y < height; y++)
             {
@@ -86,28 +86,34 @@ namespace Hordewood.World
                 _blockedCells.Remove(cellPos);
         }
 
-        public bool IsGroundCell(Vector3Int cellPos)
+        public bool HasGroundTile(Vector3Int cellPos)
         {
             if (!TryToGridIndex(cellPos, out int gx, out int gy))
                 return false;
 
-            return _groundGrid[gx, gy] && !_blockedCells.Contains(cellPos);
+            return _groundGrid[gx, gy];
         }
+
+        public bool IsBlocked(Vector3Int cellPos) => _blockedCells.Contains(cellPos);
+
+        public bool IsGroundCell(Vector3Int cellPos) => HasGroundTile(cellPos) && !IsBlocked(cellPos);
         public bool IsGround(Vector2 worldPos) => IsGroundCell(WorldToCell(worldPos));
 
-        public bool IsFullyGroundCell(Vector3Int cellPos)
+        public bool IsFullyGroundTile(Vector3Int cellPos)
         {
-            if (!IsGroundCell(cellPos))
+            if (!HasGroundTile(cellPos))
                 return false;
 
             foreach (var offset in Neighbors)
             {
-                if (!IsGroundCell(cellPos + offset))
+                if (!HasGroundTile(cellPos + offset))
                     return false;
             }
 
             return true;
         }
+
+        public bool IsFullyGroundCell(Vector3Int cellPos) => IsFullyGroundTile(cellPos) && !IsBlocked(cellPos);
         public bool IsFullyGround(Vector2 worldPos) => IsFullyGroundCell(WorldToCell(worldPos));
 
         private bool TryToGridIndex(Vector3Int cellPos, out int gx, out int gy)

@@ -9,11 +9,13 @@ namespace Hordewood.Items
         [SerializeField] private string displayName;
         [SerializeField] private Sprite icon;
         [SerializeField] private ItemRarity rarity = ItemRarity.Common;
+        [SerializeField] private bool isUnique = false;
         [SerializeField] private StatModifier[] modifiers;
 
         public string DisplayName => displayName;
         public Sprite Icon => icon;
         public ItemRarity Rarity => rarity;
+        public bool IsUnique => isUnique;
         public StatModifier[] Modifiers => modifiers;
     }
 }

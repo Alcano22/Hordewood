@@ -8,6 +8,7 @@ namespace Hordewood.UI
     {
         [SerializeField] private WaveManager waveManager;
         [SerializeField] private TextMeshProUGUI waveText;
+        [SerializeField] private string readyPrompt = "Ready up to continue!";
 
         private string _displayedWaveName;
 
@@ -28,6 +29,12 @@ namespace Hordewood.UI
 
         private void Update()
         {
+            if (waveManager.IsWaitingForReady)
+            {
+                waveText.text = readyPrompt;
+                return;
+            }
+
             if (waveManager.CurrentWave == null) return;
 
             float time = Mathf.Max(0f, waveManager.TimeRemaining);

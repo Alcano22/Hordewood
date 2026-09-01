@@ -3,7 +3,7 @@ using System;
 
 namespace Hordewood.Core
 {
-    public enum GameState { Playing, Paused, GameOver }
+    public enum GameState { Playing, Paused, WaveBreak, GameOver }
 
     public class GameManager : Singleton<GameManager>
     {
@@ -16,7 +16,7 @@ namespace Hordewood.Core
             if (CurrentState == newState) return;
 
             CurrentState = newState;
-            Time.timeScale = newState == GameState.Playing ? 1f : 0f;
+            Time.timeScale = newState == GameState.Paused ? 0f : 1f;
             OnStateChanged?.Invoke(newState);
         }
     }

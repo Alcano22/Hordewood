@@ -45,7 +45,9 @@ namespace Hordewood.World
                 {
                     Vector3Int neighbor = current + dir;
                     if (closed.Contains(neighbor)) continue;
-                    if (!world.IsFullyGroundCell(neighbor) && neighbor != goal) continue;
+                    if (!world.HasGroundTile(neighbor)) continue;
+                    if (world.IsBlocked(neighbor) && neighbor != goal) continue;
+                    if (!world.IsFullyGroundTile(neighbor) && neighbor != goal) continue;
 
                     float moveCost = (dir.x != 0 && dir.y != 0) ? 1.41421356f : 1f;
                     float tentativeG = gScore[current] + moveCost;
