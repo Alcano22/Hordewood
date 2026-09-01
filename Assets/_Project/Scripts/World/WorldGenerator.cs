@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -13,6 +14,7 @@ namespace Hordewood.World
 
         [SerializeField] private Tilemap tilemap;
         [SerializeField] private TileBase grassTile;
+        [SerializeField] private StructureSpawner structureSpawner;
 
         [Header("Size")]
         [SerializeField] private int width = 100;
@@ -25,12 +27,18 @@ namespace Hordewood.World
 
         public event System.Action OnWorldGenerated;
 
+        private readonly HashSet<Vector3Int> _blockedCells = new();
+
+        private bool[,] _groundGrid;
+
         private void Start() => Generate();
 
         [ContextMenu("Generate World")]
         public void Generate()
         {
             ClearWorld();
+
+            _groundGrid = new bool[width, height];
 
             float offsetX = seed * 10000f;
             float offsetY = seed * 5000f;
@@ -48,16 +56,43 @@ namespace Hordewood.World
 
                     Vector3Int cellPos = new(x - width / 2, y - height / 2, 0);
                     tilemap.SetTile(cellPos, grassTile);
+                    _groundGrid[x, y] = true;
                 }
+            }
+
+            if (structureSpawner != null)
+            {
+                var occupiedCells = structureSpawner.GenerateStructures(this);
+                foreach (var cell in occupiedCells)
+                    _blockedCells.Add(cell);
             }
 
             OnWorldGenerated?.Invoke();
         }
 
         [ContextMenu("Clear World")]
-        public void ClearWorld() => tilemap.ClearAllTiles();
+        public void ClearWorld()
+        {
+            tilemap.ClearAllTiles();
+            _blockedCells.Clear();
+            _groundGrid = null;
+        }
 
-        public bool IsGroundCell(Vector3Int cellPos) => tilemap.GetTile(cellPos) != null;
+        public void SetBlocked(Vector3Int cellPos, bool blocked)
+        {
+            if (blocked)
+                _blockedCells.Add(cellPos);
+            else
+                _blockedCells.Remove(cellPos);
+        }
+
+        public bool IsGroundCell(Vector3Int cellPos)
+        {
+            if (!TryToGridIndex(cellPos, out int gx, out int gy))
+                return false;
+
+            return _groundGrid[gx, gy] && !_blockedCells.Contains(cellPos);
+        }
         public bool IsGround(Vector2 worldPos) => IsGroundCell(WorldToCell(worldPos));
 
         public bool IsFullyGroundCell(Vector3Int cellPos)
@@ -74,6 +109,13 @@ namespace Hordewood.World
             return true;
         }
         public bool IsFullyGround(Vector2 worldPos) => IsFullyGroundCell(WorldToCell(worldPos));
+
+        private bool TryToGridIndex(Vector3Int cellPos, out int gx, out int gy)
+        {
+            gx = cellPos.x + width / 2;
+            gy = cellPos.y + height / 2;
+            return _groundGrid != null && gx >= 0 && gx < width && gy >= 0 && gy < height;
+        }
 
         public Vector3Int WorldToCell(Vector2 worldPos) => tilemap.WorldToCell(worldPos);
         public Vector2 CellToWorld(Vector3Int cellPos) => tilemap.GetCellCenterWorld(cellPos);

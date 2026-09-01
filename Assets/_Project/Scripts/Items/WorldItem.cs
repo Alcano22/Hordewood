@@ -1,36 +1,32 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Hordewood.Items
 {
     [RequireComponent(typeof(SpriteRenderer))]
-    public class WorldItem : MonoBehaviour
+    public class WorldItem : PickupBase
     {
         [SerializeField] private ItemData item;
-        [SerializeField] private int amount;
 
-        private SpriteRenderer _spriteRenderer;
-
-        private void Awake()
+        protected override void Awake()
         {
-            _spriteRenderer = GetComponent<SpriteRenderer>();
-            RefreshVisual();
+            base.Awake();
+
+            if (item != null)
+                RefreshVisual();
         }
 
-        public void Init(ItemData newItem, int newAmount = 1)
+        public void Init(ItemData newItem)
         {
             item = newItem;
-            amount = newAmount;
             RefreshVisual();
         }
 
-        private void RefreshVisual() => _spriteRenderer.sprite = item.Icon;
+        private void RefreshVisual() => spriteRenderer.sprite = item.Icon;
 
-        private void OnTriggerEnter2D(Collider2D other)
+        protected override void OnCollected()
         {
-            if (!other.CompareTag("Player")) return;
-
-            InventorySystem.Instance.Add(item, amount);
-            Destroy(gameObject);
+            InventorySystem.Instance.Add(item);
         }
     }
 }

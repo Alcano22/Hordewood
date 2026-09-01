@@ -1,4 +1,5 @@
 using Hordewood.Input;
+using Hordewood.Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,10 +9,10 @@ namespace Hordewood.Weapons
     {
         [SerializeField] private Gun gun;
         [SerializeField] private Transform firePoint;
-        [SerializeField] private Bullet bulletPrefab;
         [SerializeField] private WeaponPickup weaponPickupPrefab;
         [SerializeField] private WeaponVisual weaponVisual;
         [SerializeField] private AudioSource audioSource;
+        [SerializeField] private PlayerStats stats;
         [SerializeField] private float aimStickDeadzone = 0.5f;
 
         [Header("Aim Assist (Gamepad only)")]
@@ -107,7 +108,7 @@ namespace Hordewood.Weapons
                 else
                     Fire();
 
-                _fireTimer = gun.SecondsBetweenShots;
+                _fireTimer = GetEffectiveSecondsBetweenShots();
             }
         }
 
@@ -216,9 +217,16 @@ namespace Hordewood.Weapons
         private void FireSingleBullet(Vector2 direction)
         {
             Vector2 muzzlePos = weaponVisual.GetMuzzlePosition();
-            Bullet bullet = Instantiate(bulletPrefab, muzzlePos, Quaternion.LookRotation(Vector3.forward, direction));
-            bullet.transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
-            bullet.Init(direction, gun.BulletSpeed, gun.Damage, gun.Range);
+            Bullet bullet = BulletPool.Instance.Get(muzzlePos, Quaternion.identity);
+            bullet.Init(direction, gun.BulletSpeed, GetEffectiveDamage(), gun.Range);
+        }
+
+        private float GetEffectiveDamage() => stats.GetModifiedValue(StatType.Damage, gun.Damage);
+
+        private float GetEffectiveSecondsBetweenShots()
+        {
+            float effectiveFireRate = stats.GetModifiedValue(StatType.FireRate, gun.FireRate);
+            return 60f / effectiveFireRate;
         }
 
         private void StartReload()

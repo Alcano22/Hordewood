@@ -9,21 +9,16 @@ namespace Hordewood.Enemies
     public class EnemyAnimatorController : MonoBehaviour
     {
         [SerializeField] private string animationPrefix;
-        [SerializeField] private Color hitFlashColor = Color.red;
-        [SerializeField] private float hitFlashDuration = 0.1f;
         [SerializeField] private float corpseLingerTime = 1f;
 
         private Animator _animator;
         private SpriteRenderer _spriteRenderer;
         private string _currentState;
-        private Color _originalColor;
-        private Coroutine _flashRoutine;
 
         private void Awake()
         {
             _animator = GetComponent<Animator>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
-            _originalColor = _spriteRenderer.color;
         }
 
         public void PlayIdle() => Play("Idle");
@@ -70,22 +65,6 @@ namespace Hordewood.Enemies
                 _spriteRenderer.flipX = false;
             if (directionX < -0.01f)
                 _spriteRenderer.flipX = true;
-        }
-
-        public void FlashHit()
-        {
-            if (_flashRoutine != null)
-                StopCoroutine(_flashRoutine);
-
-            _flashRoutine = StartCoroutine(HitFlashRoutine());
-        }
-
-        private IEnumerator HitFlashRoutine()
-        {
-            _spriteRenderer.color = hitFlashColor;
-            yield return new WaitForSeconds(hitFlashDuration);
-            _spriteRenderer.color = _originalColor;
-            _flashRoutine = null;
         }
     }
 }

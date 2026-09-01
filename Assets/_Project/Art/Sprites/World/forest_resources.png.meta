@@ -247,15 +247,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: forest_resources_0
+      name: forest_resources_tree
       rect:
         serializedVersion: 2
-        x: 18
+        x: 16
         y: 114
-        width: 12
-        height: 23
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 16
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1362,7 +1362,6 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      forest_resources_0: -3659734935356809825
       forest_resources_1: 8108698214326413180
       forest_resources_10: -6000312543797732741
       forest_resources_11: 4216132938826187773
@@ -1412,6 +1411,7 @@ TextureImporter:
       forest_resources_campfire_unlit: 1252680468956078279
       forest_resources_chest_closed: -2192153308191783166
       forest_resources_chest_opened: 3663085055567580937
+      forest_resources_tree: -3659734935356809825
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

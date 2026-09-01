@@ -1,16 +1,23 @@
 using UnityEngine;
+using Hordewood.Core;
 using Hordewood.Combat;
 
 namespace Hordewood.Weapons
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class Bullet : MonoBehaviour
+    public class Bullet : MonoBehaviour, IPoolable
     {
-        [SerializeField] private ParticleSystem hitEffect;
+        [SerializeField] private ParticleSystem hitEffectPrefab;
 
+        private Rigidbody2D _rb;
         private float _damage;
         private float _maxDistance;
         private Vector2 _startPosition;
+
+        private void Awake()
+        {
+            _rb = GetComponent<Rigidbody2D>();
+        }
 
         public void Init(Vector2 direction, float speed, float damage, float maxDistance)
         {
@@ -21,14 +28,13 @@ namespace Hordewood.Weapons
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
-            var rb = GetComponent<Rigidbody2D>();
-            rb.linearVelocity = direction * speed;
+            _rb.linearVelocity = direction * speed;
         }
 
         private void Update()
         {
             if (Vector2.Distance(_startPosition, transform.position) >= _maxDistance)
-                DestroyBullet();
+                Despawn();
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -36,19 +42,22 @@ namespace Hordewood.Weapons
             if (other.TryGetComponent<IDamageable>(out var damageable))
                 damageable.TakeDamage(_damage);
 
-            DestroyBullet();
+            Despawn();
         }
 
-        private void DestroyBullet()
+        private void Despawn()
         {
-            if (hitEffect != null)
+            if (hitEffectPrefab != null)
             {
-                hitEffect.transform.parent = null;
-                hitEffect.Play();
-                Destroy(hitEffect.gameObject, hitEffect.main.duration);
+                ParticleSystem effect = Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
+                effect.Play();
+                Destroy(effect.gameObject, effect.main.duration);
             }
 
-            Destroy(gameObject);
+            BulletPool.Instance.Release(this);
         }
+
+        public void OnSpawned() {}
+        public void OnDespawned() => _rb.linearVelocity = Vector2.zero;
     }
 }

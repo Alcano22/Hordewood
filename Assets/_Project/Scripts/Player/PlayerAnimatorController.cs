@@ -13,13 +13,11 @@ namespace Hordewood.Player
         private Animator _animator;
         private SpriteRenderer _spriteRenderer;
         private string _currentState;
-        private Color _originalColor;
 
         private void Awake()
         {
             _animator = GetComponent<Animator>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
-            _originalColor = _spriteRenderer.color;
         }
 
         public void PlayIdle() => Play(IdleState);
@@ -39,11 +37,6 @@ namespace Hordewood.Player
                 _spriteRenderer.flipX = false;
             else if (inputX < -0.01f)
                 _spriteRenderer.flipX = true;
-        }
-
-        public void SetDashing(bool isDashing)
-        {
-            _spriteRenderer.color = isDashing ? dashTintColor : _originalColor;
         }
     }
 }

@@ -18,27 +18,33 @@ namespace Hordewood.World
                                                 Vector3Int goal, 
                                                 int maxNodes = 500)
         {
-            var openSet = new List<Vector3Int> { start };
+            var open = new MinHeap();
             var cameFrom = new Dictionary<Vector3Int, Vector3Int>();
             var gScore = new Dictionary<Vector3Int, float> { [start] = 0f };
-            var fScore = new Dictionary<Vector3Int, float> { [start] = Heuristic(start, goal) };
+            var closed = new HashSet<Vector3Int>();
+
+            open.Push(start, Heuristic(start, goal));
 
             int explored = 0;
 
-            while (openSet.Count > 0)
+            while (open.Count > 0)
             {
                 if (++explored > maxNodes)
                     return null;
 
-                Vector3Int current = GetLowestFScore(openSet, fScore);
+                Vector3Int current = open.Pop();
+
+                if (closed.Contains(current)) continue;
+
                 if (current == goal)
                     return ReconstructPath(cameFrom, current);
 
-                openSet.Remove(current);
+                closed.Add(current);
 
                 foreach (var dir in Directions)
                 {
                     Vector3Int neighbor = current + dir;
+                    if (closed.Contains(neighbor)) continue;
                     if (!world.IsFullyGroundCell(neighbor) && neighbor != goal) continue;
 
                     float moveCost = (dir.x != 0 && dir.y != 0) ? 1.41421356f : 1f;
@@ -48,37 +54,16 @@ namespace Hordewood.World
 
                     cameFrom[neighbor] = current;
                     gScore[neighbor] = tentativeG;
-                    fScore[neighbor] = tentativeG + Heuristic(neighbor, goal);
-
-                    if (!openSet.Contains(neighbor))
-                        openSet.Add(neighbor);
+                    open.Push(neighbor, tentativeG + Heuristic(neighbor, goal));
                 }
             }
 
             return null;
         }
 
-        private static Vector3Int GetLowestFScore(List<Vector3Int> openSet, 
-                                                  Dictionary<Vector3Int, float> fScore)
-        {
-            Vector3Int best = openSet[0];
-            float bestScore = fScore.TryGetValue(best, out var s) ? s : float.MaxValue;
-
-            foreach (var node in openSet)
-            {
-                float score = fScore.TryGetValue(node, out var sc) ? sc : float.MaxValue;
-                if (score >= bestScore) continue;
-
-                best = node;
-                bestScore = score;
-            }
-
-            return best;
-        }
-
         private static float Heuristic(Vector3Int a, Vector3Int b) => Vector3Int.Distance(a, b);
 
-        private static List<Vector3Int> ReconstructPath(Dictionary<Vector3Int, Vector3Int> cameFrom, 
+        private static List<Vector3Int> ReconstructPath(Dictionary<Vector3Int, Vector3Int> cameFrom,
                                                         Vector3Int current)
         {
             var path = new List<Vector3Int> { current };
@@ -89,6 +74,57 @@ namespace Hordewood.World
             }
             path.Reverse();
             return path;
+        }
+
+        private class MinHeap
+        {
+            private readonly List<(Vector3Int cell, float priority)> _items = new();
+
+            public int Count => _items.Count;
+
+            public void Push(Vector3Int cell, float priority)
+            {
+                _items.Add((cell, priority));
+                int i = _items.Count - 1;
+
+                while (i > 0)
+                {
+                    int parent = (i - 1) / 2;
+                    if (_items[parent].priority <= _items[i].priority) break;
+
+                    (_items[parent], _items[i]) = (_items[i], _items[parent]);
+                    i = parent;
+                }
+            }
+
+            public Vector3Int Pop()
+            {
+                Vector3Int result = _items[0].cell;
+                int last = _items.Count - 1;
+
+                _items[0] = _items[last];
+                _items.RemoveAt(last);
+
+                int i = 0;
+                while (true)
+                {
+                    int left = i * 2 + 1;
+                    int right = i * 2 + 2;
+                    int smallest = i;
+
+                    if (left < _items.Count && _items[left].priority < _items[smallest].priority)
+                        smallest = left;
+                    if (right < _items.Count && _items[right].priority < _items[smallest].priority)
+                        smallest = right;
+
+                    if (smallest == i) break;
+
+                    (_items[smallest], _items[i]) = (_items[i], _items[smallest]);
+                    i = smallest;
+                }
+
+                return result;
+            }
         }
     }
 }

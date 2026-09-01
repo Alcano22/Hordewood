@@ -1,0 +1,431 @@
+fileFormatVersion: 2
+guid: ff6060235dc372e4eb791d6cbf620f2e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2983317447032629401
+    second: forestVillageStructures_ [stallsWatchtower]_0
+  - first:
+      213: -8370384554056476877
+    second: forestVillageStructures_ [stallsWatchtower]_1
+  - first:
+      213: 4039214747436666267
+    second: forestVillageStructures_ [stallsWatchtower]_2
+  - first:
+      213: -3900942065050470555
+    second: forestVillageStructures_ [stallsWatchtower]_3
+  - first:
+      213: -3435491642700425583
+    second: forestVillageStructures_ [stallsWatchtower]_4
+  - first:
+      213: 1959193400003020523
+    second: forestVillageStructures_ [stallsWatchtower]_5
+  - first:
+      213: 1933561864210660121
+    second: forestVillageStructures_ [stallsWatchtower]_6
+  - first:
+      213: -7971579834349109290
+    second: forestVillageStructures_ [stallsWatchtower]_7
+  - first:
+      213: 8885233762700349173
+    second: forestVillageStructures_ [stallsWatchtower]_8
+  - first:
+      213: -2755705723341829391
+    second: forestVillageStructures_ [stallsWatchtower]_9
+  - first:
+      213: 1437378564495036670
+    second: forestVillageStructures_ [stallsWatchtower]_10
+  - first:
+      213: 7004567482637133646
+    second: forestVillageStructures_ [stallsWatchtower]_11
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: forest_village_structures_0
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 328
+        width: 34
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38be56b9a6e3ddf4193345280158678a
+      internalID: 1924447624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_village_structures_1
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 243
+        width: 54
+        height: 103
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62ebd637dc1bf19419b5913aff02a866
+      internalID: 2125599521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_village_structures_shop_stall
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 244
+        width: 54
+        height: 74
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 322f86de8458cfd4d9ef6528394dbcdc
+      internalID: 90149589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_village_structures_3
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 244
+        width: 74
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f65df753042cf6c4a8ec3edfb6248a77
+      internalID: -1538986942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_village_structures_4
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 216
+        width: 34
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29cd7fd0449fd294caeca735dba77d98
+      internalID: 1643582735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_village_structures_5
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 131
+        width: 54
+        height: 103
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da00d2c216f92ce4395ad82c0fd8cbdf
+      internalID: 730975663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_village_structures_6
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 132
+        width: 54
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a012fecb797167a4e87efaee609aed37
+      internalID: -67530475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_village_structures_7
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 132
+        width: 74
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e3175b2200a0964a9c514d2a3da18ac
+      internalID: -932583724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_village_structures_8
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 104
+        width: 34
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7598a8bea85802b4f884aef94fabb8c7
+      internalID: 1171011726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_village_structures_9
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 19
+        width: 54
+        height: 103
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17632fd5751ca2843b7626cae73e2e8a
+      internalID: 1268251747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_village_structures_10
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 20
+        width: 54
+        height: 74
+      alignment: 9
+      pivot: {x: 0.5, y: 0.35}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 204da64eaf66e7a4e915d534011128eb
+      internalID: -662200330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_village_structures_11
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 20
+        width: 74
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 319521a7c5ef3f541a4439011db1084e
+      internalID: 386411623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 72dd23f0c1ad86b40b34f5c64dc21be6
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      forest_village_structures_0: 1924447624
+      forest_village_structures_1: 2125599521
+      forest_village_structures_10: -662200330
+      forest_village_structures_11: 386411623
+      forest_village_structures_3: -1538986942
+      forest_village_structures_4: 1643582735
+      forest_village_structures_5: 730975663
+      forest_village_structures_6: -67530475
+      forest_village_structures_7: -932583724
+      forest_village_structures_8: 1171011726
+      forest_village_structures_9: 1268251747
+      forest_village_structures_shop_stall: 90149589
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -14,6 +14,11 @@ namespace Hordewood.Enemies
         private int _waypointIndex;
         private float _repathTimer;
 
+        private void Awake()
+        {
+            _repathTimer = Random.Range(0f, repathInterval);
+        }
+
         public void SetWorldGenerator(WorldGenerator worldGenerator)
         {
             _worldGenerator = worldGenerator;

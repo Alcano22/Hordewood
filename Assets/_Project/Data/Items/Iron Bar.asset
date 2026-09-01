@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e06b2ad77e74cd742a6c0d528976103a, type: 3}
-  m_Name: TestItem
+  m_Name: Iron Bar
   m_EditorClassIdentifier: Assembly-CSharp::Hordewood.Items.ItemData
-  displayName: Test Item
-  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  displayName: Iron Bar
+  icon: {fileID: 1808478481, guid: 8d1eaea3d8d0f2b4ea6177b9aa0e1a85, type: 3}

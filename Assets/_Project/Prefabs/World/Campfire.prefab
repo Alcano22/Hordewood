@@ -245,6 +245,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hordewood.World.Campfire
   interactPrompt: {fileID: 6459213369527787309}
+  fireLight: {fileID: 3490591973116495914}
+  healRadius: 3
+  healPerSecond: 2
 --- !u!212 &2415566935038599911
 SpriteRenderer:
   serializedVersion: 2
@@ -461,7 +464,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8459572751944395693
 Transform:
   m_ObjectHideFlags: 0
@@ -494,7 +497,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 0.23137255, b: 0.12156863, a: 1}
-  m_Intensity: 1.5
+  m_Intensity: 1.75
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: e14d3b5687dfdde200000000
@@ -517,7 +520,7 @@ MonoBehaviour:
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0
+  m_PointLightInnerRadius: 1
   m_PointLightOuterRadius: 1
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0

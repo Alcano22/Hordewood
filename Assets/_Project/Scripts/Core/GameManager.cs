@@ -5,22 +5,11 @@ namespace Hordewood.Core
 {
     public enum GameState { Playing, Paused, GameOver }
 
-    public class GameManager : MonoBehaviour
+    public class GameManager : Singleton<GameManager>
     {
-        public static GameManager Instance { get; private set; }
-
         public GameState CurrentState { get; private set; } = GameState.Playing;
-        public event Action<GameState> OnStateChanged;
 
-        private void Awake()
-        {
-            if (Instance != null && Instance != this)
-            {
-                Destroy(gameObject);
-                return;
-            }
-            Instance = this;
-        }
+        public event Action<GameState> OnStateChanged;
         
         public void SetState(GameState newState)
         {

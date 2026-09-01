@@ -53,7 +53,9 @@ MonoBehaviour:
   stats: {fileID: 11400000, guid: eee9dc3ab4ffc5344b4f0c285cd42469, type: 2}
   animController: {fileID: 4265297475298176002}
   pathfinder: {fileID: 851122981490702411}
+  spriteTint: {fileID: 6270959847188432005}
   deathEffect: {fileID: 5275840520602994989}
+  dropTable: {fileID: 11400000, guid: b666f36587c553d428c75e132eb1b0f4, type: 2}
 --- !u!114 &851122981490702411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,6 +231,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7394914044645716320}
   - component: {fileID: 4265297475298176002}
+  - component: {fileID: 6270959847188432005}
   - component: {fileID: 7663762712082360079}
   - component: {fileID: 2343946221913768453}
   m_Layer: 0
@@ -266,9 +269,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hordewood.Enemy.EnemyAnimatorController
   animationPrefix: Goblin
-  hitFlashColor: {r: 1, g: 0, b: 0, a: 1}
-  hitFlashDuration: 0.1
   corpseLingerTime: 1
+--- !u!114 &6270959847188432005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124628933944023112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 186a19d9671511e4e97a7d5020bdd2a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Hordewood.Core.SpriteTint
+  defaultFlashColor: {r: 1, g: 0, b: 0, a: 1}
+  defaultFlashDuration: 0.08
 --- !u!95 &7663762712082360079
 Animator:
   serializedVersion: 7

@@ -1,19 +1,23 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Hordewood.Input;
+using Hordewood.Core;
 
 namespace Hordewood.Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class PlayerMovement : MonoBehaviour
     {
-        [SerializeField] private float moveSpeed = 5f;
+        [SerializeField] private float baseMoveSpeed = 5f;
         [SerializeField] private PlayerAnimatorController animController;
+        [SerializeField] private SpriteTint spriteTint;
+        [SerializeField] private PlayerStats stats;
 
         [Header("Dash")]
         [SerializeField] private float dashSpeed = 15f;
         [SerializeField] private float dashDuration = 0.15f;
         [SerializeField] private float dashCooldown = 0.8f;
+        [SerializeField] private Color dashTintColor = new(0.6f, 0.85f, 1f);
 
         private Rigidbody2D _rb;
         private PlayerControls _controls;
@@ -60,7 +64,7 @@ namespace Hordewood.Player
             _isDashing = true;
             _dashTimer = dashDuration;
             _dashCooldownTimer = dashCooldown;
-            animController.SetDashing(true);
+            spriteTint.SetTint(dashTintColor, true);
         }
 
         private void FixedUpdate()
@@ -76,13 +80,14 @@ namespace Hordewood.Player
                 if (_dashTimer <= 0f)
                 {
                     _isDashing = false;
-                    animController.SetDashing(false);
+                    spriteTint.SetTint(dashTintColor, false);
                 }
 
                 return;
             }
 
-            _rb.linearVelocity = _moveInput * moveSpeed;
+            float effectiveMoveSpeed = stats.GetModifiedValue(StatType.MoveSpeed, baseMoveSpeed);
+            _rb.linearVelocity = _moveInput * effectiveMoveSpeed;
 
             if (_moveInput.sqrMagnitude > 0.01f)
             {

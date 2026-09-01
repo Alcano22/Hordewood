@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+using Hordewood.Core;
 using Hordewood.Combat;
+using Hordewood.Items;
 
 namespace Hordewood.Enemies
 {
@@ -9,7 +11,11 @@ namespace Hordewood.Enemies
         [SerializeField] private EnemyStats stats;
         [SerializeField] private EnemyAnimatorController animController;
         [SerializeField] private EnemyPathfinder pathfinder;
+        [SerializeField] private SpriteTint spriteTint;
         [SerializeField] private ParticleSystem deathEffect;
+
+        [Header("Loot")]
+        [SerializeField] private DropTable dropTable;
 
         private Rigidbody2D _rb;
         private Transform _target;
@@ -49,10 +55,10 @@ namespace Hordewood.Enemies
         public void TakeDamage(float amount)
         {
             _currentHealth -= amount;
-            animController.FlashHit();
+            spriteTint.Flash();
 
             if (_currentHealth <= 0f)
-                Die();
+                Die(true);
         }
 
         public void Kill()
@@ -60,14 +66,15 @@ namespace Hordewood.Enemies
             if (_currentHealth <= 0f) return;
 
             _currentHealth = 0f;
-            Die();
+            Die(false);
         }
 
-        private void Die()
+        private void Die(bool dropLoot)
         {
             enabled = false;
             _rb.linearVelocity = Vector2.zero;
             _rb.simulated = false;
+
             animController.PlayDeath(() =>
             {
                 if (deathEffect != null)
@@ -77,8 +84,15 @@ namespace Hordewood.Enemies
                     Destroy(deathEffect.gameObject, deathEffect.main.duration);
                 }
 
+                if (dropLoot)
+                    SpawnDrop();
                 Destroy(gameObject);
             });
+        }
+
+        private void SpawnDrop()
+        {
+            ItemDropper.Instance.DropFromTable(dropTable, transform.position);
         }
 
         private void OnCollisionEnter2D(Collision2D collision) => TryDealContactDamage(collision);
