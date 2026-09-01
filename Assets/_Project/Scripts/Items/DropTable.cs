@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Hordewood.Items
 {
@@ -14,6 +15,18 @@ namespace Hordewood.Items
             public int maxAmount;
         }
 
+        public readonly struct DropResult
+        {
+            public readonly ItemData Item;
+            public readonly int Amount;
+
+            public DropResult(ItemData item, int amount)
+            {
+                Item = item;
+                Amount = amount;
+            }
+        }
+
         [SerializeField] private DropEntry[] entries;
 
         [Header("Coins")]
@@ -21,20 +34,17 @@ namespace Hordewood.Items
         [SerializeField] private int minCoins;
         [SerializeField] private int maxCoins;
 
-        public bool TryRollDrop(out ItemData item, out int amount)
+        public void RollDrops(List<DropResult> results)
         {
+            results.Clear();
+
             foreach (var entry in entries)
             {
                 if (Random.value > entry.dropChance) continue;
 
-                item = entry.item;
-                amount = Random.Range(entry.minAmount, entry.maxAmount + 1);
-                return true;
+                int amount = Random.Range(entry.minAmount, entry.maxAmount + 1);
+                results.Add(new DropResult(entry.item, amount));
             }
-
-            item = null;
-            amount = 0;
-            return false;
         }
 
         public bool TryRollCoins(out int amount)

@@ -8,6 +8,7 @@ namespace Hordewood.Weapons
     public class Bullet : MonoBehaviour, IPoolable
     {
         [SerializeField] private ParticleSystem hitEffectPrefab;
+        [SerializeField] private TrailRenderer trailRenderer;
 
         private Rigidbody2D _rb;
         private float _damage;
@@ -57,7 +58,12 @@ namespace Hordewood.Weapons
             BulletPool.Instance.Release(this);
         }
 
-        public void OnSpawned() {}
+        public void OnSpawned()
+        {
+            if (trailRenderer != null)
+                trailRenderer.Clear();
+        }
+
         public void OnDespawned() => _rb.linearVelocity = Vector2.zero;
     }
 }

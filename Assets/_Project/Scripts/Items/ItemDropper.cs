@@ -1,4 +1,5 @@
-﻿using Hordewood.Core;
+﻿using System.Collections.Generic;
+using Hordewood.Core;
 using UnityEngine;
 
 namespace Hordewood.Items
@@ -7,6 +8,8 @@ namespace Hordewood.Items
     {
         [SerializeField] private WorldItem worldItemPrefab;
         [SerializeField] private WorldCoin worldCoinPrefab;
+
+        private readonly List<DropTable.DropResult> _dropResultsBuffer = new();
 
         public void Drop(ItemData item, int amount, Vector2 position)
         {
@@ -27,8 +30,9 @@ namespace Hordewood.Items
         {
             if (dropTable == null) return;
 
-            if (dropTable.TryRollDrop(out ItemData item, out int itemAmount))
-                Drop(item, itemAmount, position);
+            dropTable.RollDrops(_dropResultsBuffer);
+            foreach (var result in _dropResultsBuffer)
+                Drop(result.Item, result.Amount, position);
 
             if (dropTable.TryRollCoins(out int coinAmount))
                 DropCoins(coinAmount, position);

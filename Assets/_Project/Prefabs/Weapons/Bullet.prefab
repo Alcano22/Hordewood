@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hordewood.Weapon.Bullet
   hitEffectPrefab: {fileID: 1621642476869126959, guid: 9798317add5c8cb4d8e5d1e12f58d2d7, type: 3}
+  trailRenderer: {fileID: 4569335553063051251}
 --- !u!50 &8389941374863939015
 Rigidbody2D:
   serializedVersion: 5

@@ -70,6 +70,8 @@ namespace Hordewood.Player
             OnDeath?.Invoke();
         }
 
-        public float MaxHealth => stats.GetModifiedValue(StatType.MaxHealth, baseMaxHealth);
+        public float MaxHealth => stats != null
+                                ? stats.GetModifiedValue(StatType.MaxHealth, baseMaxHealth)
+                                : baseMaxHealth;
     }
 }
