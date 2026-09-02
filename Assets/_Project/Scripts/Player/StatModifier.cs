@@ -10,11 +10,16 @@ namespace Hordewood.Player
 
         public bool IsPositive => value >= 0f;
 
-        public string GetDescription()
+        public string GetDescription(StatDisplayNames statNames)
         {
-            string sign = value >= 0 ? "+" : "";
-            string valueText = isPercentage ? $"{sign}{value:0.#}%" : $"{sign}{value:0.#}";
-            return $"{valueText} {type.GetDisplayName()}";
+            float displayValue = isPercentage ? value * 100f : value;
+
+            string signedValue = displayValue >= 0
+                               ? $"+{displayValue:0.#}"
+                               : $"{displayValue:0.#}";
+
+            string valueText = isPercentage ? $"<b>{signedValue}%</b>" : $"<b>{signedValue}</b>";
+            return $"{valueText} {statNames.GetDisplayName(type)}";
         }
     }
 }

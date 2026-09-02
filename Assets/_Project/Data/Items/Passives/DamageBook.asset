@@ -12,10 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5ac18026feb7a04cad5e9f8e53035b0, type: 3}
   m_Name: DamageBook
   m_EditorClassIdentifier: Assembly-CSharp::Hordewood.Items.PassiveItem
-  displayName: Damage Book
+  displayName:
+    m_TableReference:
+      m_TableCollectionName: GUID:ec6c9fa624db50b45840aa801fa7a406
+    m_TableEntryReference:
+      m_KeyId: 9468855189504
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   icon: {fileID: 64687156, guid: 8d1eaea3d8d0f2b4ea6177b9aa0e1a85, type: 3}
   rarity: 0
+  isUnique: 0
   modifiers:
   - type: 1
     value: 0.2
     isPercentage: 1
+  references:
+    version: 2
+    RefIds: []

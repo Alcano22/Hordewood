@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization;
 using Hordewood.Items;
+using Hordewood.Localization;
 
 namespace Hordewood.UI
 {
@@ -9,6 +11,7 @@ namespace Hordewood.UI
         [SerializeField] private PickupPopupUI popupPrefab;
         [SerializeField] private Transform popupContainer;
         [SerializeField] private Sprite coinSprite;
+        [SerializeField] private LocalizedString coinName;
         [SerializeField] private int maxVisiblePopups = 6;
 
         private readonly Dictionary<Sprite, PickupPopupUI> _activePopups = new();
@@ -31,7 +34,8 @@ namespace Hordewood.UI
         }
 
         private void OnItemAdded(ItemData item, int amount) => SpawnOrUpdatePopup(item.Icon, amount, item.DisplayName);
-        private void OnCoinsAdded(int amount) => SpawnOrUpdatePopup(coinSprite, amount, "Coin");
+        private void OnCoinsAdded(int amount) => 
+            SpawnOrUpdatePopup(coinSprite, amount, LocalizationService.Instance.GetString(coinName));
 
         private void SpawnOrUpdatePopup(Sprite sprite, int amount, string displayName)
         {

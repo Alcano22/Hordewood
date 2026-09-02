@@ -15,6 +15,7 @@ namespace Hordewood.World
         [SerializeField] private SpriteTint spriteTint;
 
         private float _currentHealth;
+        private bool _isDestroyed;
         private WorldGenerator _worldGenerator;
         private List<Vector3Int> _occupiedCells;
 
@@ -31,6 +32,8 @@ namespace Hordewood.World
 
         public void TakeDamage(float amount)
         {
+            if (_isDestroyed) return;
+
             _currentHealth -= amount;
             spriteTint.Flash();
 
@@ -40,6 +43,9 @@ namespace Hordewood.World
 
         private void Die()
         {
+            if (_isDestroyed) return;
+            _isDestroyed = true;
+
             if (destroyEffect != null)
             {
                 destroyEffect.transform.parent = null;

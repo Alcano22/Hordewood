@@ -1,6 +1,6 @@
 using Hordewood.Items;
-using System;
 using UnityEngine;
+using UnityEngine.Localization;
 
 namespace Hordewood.Weapons
 {
@@ -9,7 +9,7 @@ namespace Hordewood.Weapons
     [CreateAssetMenu(fileName = "New Gun", menuName = "Hordewood/Weapons/Gun")]
     public class Gun : ScriptableObject
     {
-        [SerializeField] private string displayName;
+        [SerializeField] private LocalizedString displayName;
         [SerializeField] private ItemRarity rarity;
         [SerializeField] private Sprite icon;
         [SerializeField] private Vector2 muzzleOffset;
@@ -30,7 +30,7 @@ namespace Hordewood.Weapons
 
         [SerializeField] private AudioClip fireSound;
 
-        public string DisplayName => displayName;
+        public string DisplayName => Localization.LocalizationService.Instance.GetString(displayName);
         public ItemRarity Rarity => rarity;
         public Sprite Icon => icon;
         public Vector2 MuzzleOffset => muzzleOffset;

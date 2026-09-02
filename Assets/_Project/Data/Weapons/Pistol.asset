@@ -12,7 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de64cef79fb772e4fb351438cdeef57a, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: Assembly-CSharp::Hordewood.Weapon.Gun
-  displayName: Pistol
+  displayName:
+    m_TableReference:
+      m_TableCollectionName: GUID:ec6c9fa624db50b45840aa801fa7a406
+    m_TableEntryReference:
+      m_KeyId: 11599813279744
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  rarity: 0
   icon: {fileID: 173883159, guid: 30818eaa51c14124eac3c0c6dfe0d6e9, type: 3}
   muzzleOffset: {x: -0.25, y: 0.125}
   visualScale: 1
@@ -28,3 +37,6 @@ MonoBehaviour:
   pelletCount: 6
   spreadAngle: 25
   fireSound: {fileID: 8300000, guid: 2f5f45b11e9ac4e4e923b9ac3a586c42, type: 3}
+  references:
+    version: 2
+    RefIds: []

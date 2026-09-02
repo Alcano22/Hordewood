@@ -4,6 +4,9 @@ using UnityEngine.UI;
 using TMPro;
 using Hordewood.Items;
 using Hordewood.Player;
+using UnityEngine.Localization;
+using Hordewood.Weapons;
+using Hordewood.Localization;
 
 namespace Hordewood.UI
 {
@@ -20,6 +23,12 @@ namespace Hordewood.UI
         [Header("Modifier Colors")]
         [SerializeField] private Color positiveColor = new(0.4f, 0.9f, 0.4f);
         [SerializeField] private Color negativeColor = new(0.9f, 0.3f, 0.3f);
+
+        [Header("Localization")]
+        [SerializeField] private StatDisplayNames statNames;
+        [SerializeField] private LocalizedString gunDamageLabel;
+        [SerializeField] private LocalizedString gunFireRateLabel;
+        [SerializeField] private LocalizedString gunCapacityLabel;
 
         private ShopOffer _offer;
         private System.Action<ShopOffer> _onBuy;
@@ -41,7 +50,7 @@ namespace Hordewood.UI
                 Color tint = offer.Gun.Rarity.GetColor();
                 tint.a = rarityTintAlpha;
                 rarityTint.color = tint;
-                descriptionText.text = string.Empty;
+                descriptionText.text = BuildGunDescription(offer.Gun);
             } else
             {
                 icon.sprite = offer.PassiveItem.Icon;
@@ -49,7 +58,7 @@ namespace Hordewood.UI
                 Color tint = offer.PassiveItem.Rarity.GetColor();
                 tint.a = rarityTintAlpha;
                 rarityTint.color = tint;
-                descriptionText.text = BuildDescription(offer.PassiveItem.Modifiers);
+                descriptionText.text = BuildModifierDescription(offer.PassiveItem.Modifiers);
             }
 
             priceText.text = offer.Price.ToString();
@@ -58,7 +67,16 @@ namespace Hordewood.UI
             buyButton.onClick.AddListener(OnBuyClicked);
         }
 
-        private string BuildDescription(StatModifier[] modifiers)
+        private string BuildGunDescription(Gun gun)
+        {
+            var sb = new StringBuilder();
+            sb.Append($"{LocalizationService.Instance.GetString(gunDamageLabel)}: <b>{gun.Damage:0.#}</b>\n");
+            sb.Append($"{LocalizationService.Instance.GetString(gunFireRateLabel)}: <b>{gun.FireRate:0.#}</b>\n");
+            sb.Append($"{LocalizationService.Instance.GetString(gunCapacityLabel)}: <b>{gun.Capacity}</b>");
+            return sb.ToString();
+        }
+
+        private string BuildModifierDescription(StatModifier[] modifiers)
         {
             var sb = new StringBuilder();
 
@@ -67,7 +85,7 @@ namespace Hordewood.UI
                 var mod = modifiers[i];
                 string colorHex = ColorUtility.ToHtmlStringRGB(mod.IsPositive ? positiveColor : negativeColor);
 
-                sb.Append($"<color=#{colorHex}>{mod.GetDescription()}</color>");
+                sb.Append($"<color=#{colorHex}>{mod.GetDescription(statNames)}</color>");
 
                 if (i < modifiers.Length - 1)
                     sb.Append('\n');

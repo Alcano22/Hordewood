@@ -12,5 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e06b2ad77e74cd742a6c0d528976103a, type: 3}
   m_Name: Wood
   m_EditorClassIdentifier: Assembly-CSharp::Hordewood.Items.ItemData
-  displayName: Wood
+  displayName:
+    m_TableReference:
+      m_TableCollectionName: GUID:ec6c9fa624db50b45840aa801fa7a406
+    m_TableEntryReference:
+      m_KeyId: 2648719753216
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  rarity: 0
   icon: {fileID: 908000979, guid: 8d1eaea3d8d0f2b4ea6177b9aa0e1a85, type: 3}
+  references:
+    version: 2
+    RefIds: []

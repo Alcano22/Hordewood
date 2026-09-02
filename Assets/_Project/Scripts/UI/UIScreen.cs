@@ -4,11 +4,11 @@ namespace Hordewood.UI
 {
     public abstract class UIScreen : MonoBehaviour
     {
-        [SerializeField] private GameObject root;
+        [SerializeField] private CanvasGroup canvasGroup;
 
         public bool IsOpen { get; private set; }
 
-        protected virtual void Awake() => root.SetActive(false);
+        protected virtual void Awake() => SetVisible(false);
 
         protected virtual void Start()
         {
@@ -27,7 +27,7 @@ namespace Hordewood.UI
             if (IsOpen) return;
 
             IsOpen = true;
-            root.SetActive(true);
+            SetVisible(true);
             ScreenManager.Instance.NotifyOpened(this);
             OnOpened();
         }
@@ -37,9 +37,16 @@ namespace Hordewood.UI
             if (!IsOpen) return;
 
             IsOpen = false;
-            root.SetActive(false);
+            SetVisible(false);
             ScreenManager.Instance.NotifyClosed(this);
             OnClosed();
+        }
+
+        private void SetVisible(bool visible)
+        {
+            canvasGroup.alpha = visible ? 1f : 0f;
+            canvasGroup.interactable = visible;
+            canvasGroup.blocksRaycasts = visible;
         }
 
         protected virtual void OnOpened() {}

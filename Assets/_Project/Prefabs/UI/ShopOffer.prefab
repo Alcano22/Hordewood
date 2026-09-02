@@ -616,6 +616,37 @@ MonoBehaviour:
   buyButton: {fileID: 6934313276628106589}
   positiveColor: {r: 0.4, g: 0.9, b: 0.4, a: 1}
   negativeColor: {r: 0.9, g: 0.3, b: 0.3, a: 1}
+  statNames: {fileID: 11400000, guid: 50375c1c617e92e4b9182356a5f31d05, type: 2}
+  gunDamageLabel:
+    m_TableReference:
+      m_TableCollectionName: GUID:6e3fdbb77dde4a741b796ae59b495a14
+    m_TableEntryReference:
+      m_KeyId: 25328877568000
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  gunFireRateLabel:
+    m_TableReference:
+      m_TableCollectionName: GUID:6e3fdbb77dde4a741b796ae59b495a14
+    m_TableEntryReference:
+      m_KeyId: 25365225406464
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  gunCapacityLabel:
+    m_TableReference:
+      m_TableCollectionName: GUID:6e3fdbb77dde4a741b796ae59b495a14
+    m_TableEntryReference:
+      m_KeyId: 25403259355136
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &8932917394317530452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -778,9 +809,9 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 36
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 4096

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Localization;
 
 namespace Hordewood.Items
 {
@@ -19,11 +20,11 @@ namespace Hordewood.Items
     [CreateAssetMenu(fileName = "New Item", menuName = "Hordewood/Items/ItemData")]
     public class ItemData : ScriptableObject
     {
-        [SerializeField] private string displayName;
+        [SerializeField] private LocalizedString displayName;
         [SerializeField] private ItemRarity rarity = ItemRarity.Common;
         [SerializeField] private Sprite icon;
 
-        public string DisplayName => displayName;
+        public string DisplayName => Localization.LocalizationService.Instance.GetString(displayName);
         public ItemRarity Rarity => rarity;
         public Sprite Icon => icon;
     }

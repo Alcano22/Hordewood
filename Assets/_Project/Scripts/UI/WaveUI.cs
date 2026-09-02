@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.Localization;
 using TMPro;
 using Hordewood.Core;
+using Hordewood.Localization;
 
 namespace Hordewood.UI
 {
@@ -8,30 +10,16 @@ namespace Hordewood.UI
     {
         [SerializeField] private WaveManager waveManager;
         [SerializeField] private TextMeshProUGUI waveText;
-        [SerializeField] private string readyPrompt = "Ready up to continue!";
+        [SerializeField] private LocalizedString waveLabel;
+        [SerializeField] private LocalizedString readyPrompt;
 
         private string _displayedWaveName;
-
-        private void OnEnable()
-        {
-            waveManager.OnWaveStarted += OnWaveStarted;
-        }
-
-        private void OnDisable()
-        {
-            waveManager.OnWaveStarted -= OnWaveStarted;
-        }
-
-        private void OnWaveStarted(WaveData wave)
-        {
-            _displayedWaveName = wave.DisplayName;
-        }
 
         private void Update()
         {
             if (waveManager.IsWaitingForReady)
             {
-                waveText.text = readyPrompt;
+                waveText.text = LocalizationService.Instance.GetString(readyPrompt);
                 return;
             }
 
@@ -40,7 +28,9 @@ namespace Hordewood.UI
             float time = Mathf.Max(0f, waveManager.TimeRemaining);
             int mins = Mathf.FloorToInt(time / 60f);
             int secs = Mathf.FloorToInt(time % 60f);
-            waveText.text = $"{_displayedWaveName} — {mins}:{secs:00}";
+
+            string waveName = LocalizationService.Instance.GetString(waveLabel, waveManager.CurrentWaveNumber);
+            waveText.text = $"{waveName} — {mins}:{secs:00}";
         }
     }
 }
