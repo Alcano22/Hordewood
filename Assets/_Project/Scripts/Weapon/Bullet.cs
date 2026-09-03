@@ -11,14 +11,14 @@ namespace Hordewood.Weapons
         [SerializeField] private TrailRenderer trailRenderer;
 
         private Rigidbody2D _rb;
+        private IBulletPool _ownerPool;
         private float _damage;
         private float _maxDistance;
         private Vector2 _startPosition;
 
-        private void Awake()
-        {
-            _rb = GetComponent<Rigidbody2D>();
-        }
+        private void Awake() => _rb = GetComponent<Rigidbody2D>();
+
+        public void SetOwnerPool(IBulletPool pool) => _ownerPool = pool;
 
         public void Init(Vector2 direction, float speed, float damage, float maxDistance)
         {
@@ -55,7 +55,7 @@ namespace Hordewood.Weapons
                 Destroy(effect.gameObject, effect.main.duration);
             }
 
-            BulletPool.Instance.Release(this);
+            _ownerPool.Release(this);
         }
 
         public void OnSpawned()

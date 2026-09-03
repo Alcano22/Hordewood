@@ -1,26 +1,23 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 using Hordewood.Enemies;
 using Hordewood.Input;
-using UnityEngine.InputSystem;
 
 namespace Hordewood.Core
 {
     public class WaveManager : MonoBehaviour
     {
-        [SerializeField] private WaveData[] waves;
+        [SerializeField] private WaveGenerationConfig generationConfig;
 
         private PlayerControls _controls;
-        private int _currentWaveIndex = -1;
+        private WaveData _currentWave;
+        private int _currentWaveIndex;
         private float _waveTimer;
         private bool _waveActive;
         private bool _waitingForReady;
 
-        public WaveData CurrentWave => _currentWaveIndex >= 0 && _currentWaveIndex < waves.Length
-                                     ? waves[_currentWaveIndex] : null;
-
         public event System.Action<WaveData> OnWaveStarted;
         public event System.Action OnWaveEnded;
-        public event System.Action OnAllWavesComplete;
 
         private void OnEnable()
         {
@@ -50,12 +47,7 @@ namespace Hordewood.Core
         private void StartNextWave()
         {
             _currentWaveIndex++;
-            if (_currentWaveIndex >= waves.Length)
-            {
-                OnAllWavesComplete?.Invoke();
-                return;
-            }
-
+            _currentWave = generationConfig.GenerateWave(_currentWaveIndex);
             _waveTimer = CurrentWave.Duration;
             _waveActive = true;
             OnWaveStarted?.Invoke(CurrentWave);
@@ -87,9 +79,10 @@ namespace Hordewood.Core
                 enemy.Kill();
         }
 
+        public WaveData CurrentWave => _currentWave;
+        public int CurrentWaveNumber => _currentWaveIndex;
         public float TimeRemaining => _waveTimer;
         public bool IsWaveActive => _waveActive;
         public bool IsWaitingForReady => _waitingForReady;
-        public int CurrentWaveNumber => _currentWaveIndex + 1;
     }
 }

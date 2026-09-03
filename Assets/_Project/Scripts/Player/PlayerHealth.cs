@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 using Hordewood.Combat;
 using Hordewood.Core;
+using Hordewood.UI;
 
 namespace Hordewood.Player
 {
-    public class PlayerHealth : MonoBehaviour, IDamageable
+    public class PlayerHealth : MonoBehaviour, IDamageable, IHealthSource
     {
         [SerializeField] private float baseMaxHealth = 100f;
         [SerializeField] private float invulnerabilityDuration = 0.5f;
         [SerializeField] private PlayerStats stats;
+        [SerializeField] private HealthBarUI healthBar;
 
         [Header("Camera Shake")]
         [SerializeField] private CameraShake cameraShake;
@@ -24,9 +26,14 @@ namespace Hordewood.Player
         public event System.Action<float, float> OnHealthChanged;
         public event System.Action OnDeath;
 
+        private bool _isDead;
+
         private void Awake()
         {
             CurrentHealth = MaxHealth;
+
+            if (healthBar != null)
+                healthBar.SetHealthSource(this);
         }
 
         private void OnEnable()
@@ -55,6 +62,7 @@ namespace Hordewood.Player
 
         public void Heal(float amount)
         {
+            if (_isDead) return;
             if (CurrentHealth >= MaxHealth) return;
 
             CurrentHealth = Mathf.Min(CurrentHealth + amount, MaxHealth);
@@ -63,6 +71,7 @@ namespace Hordewood.Player
 
         public void TakeDamage(float amount)
         {
+            if (_isDead) return;
             if (InvulnerabilityTimer > 0f) return;
 
             CurrentHealth -= amount;
@@ -78,7 +87,13 @@ namespace Hordewood.Player
 
         private void Die()
         {
+            if (_isDead) return;
+            _isDead = true;
+
             OnDeath?.Invoke();
+
+            GameManager.Instance.SetState(GameState.GameOver);
+            ScreenManager.Instance.Open<GameOverScreen>();
         }
 
         public float MaxHealth => stats != null

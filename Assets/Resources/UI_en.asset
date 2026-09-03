@@ -64,6 +64,19 @@ MonoBehaviour:
     m_Localized: Capacity
     m_Metadata:
       m_Items: []
+  - m_Id: 360543542050816
+    m_Localized: Reached Wave {0}
+    m_Metadata:
+      m_Items:
+      - rid: 194774124921618845
+  - m_Id: 360763277443072
+    m_Localized: Game Over
+    m_Metadata:
+      m_Items: []
+  - m_Id: 360990193483776
+    m_Localized: Restart
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
@@ -73,3 +86,4 @@ MonoBehaviour:
         m_Entries: 
         m_SharedEntries:
         - id: 15592228651008
+        - id: 360543542050816

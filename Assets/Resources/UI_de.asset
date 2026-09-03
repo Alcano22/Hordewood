@@ -64,6 +64,19 @@ MonoBehaviour:
     m_Localized: "Kapazit\xE4t"
     m_Metadata:
       m_Items: []
+  - m_Id: 360543542050816
+    m_Localized: Welle {0} erreicht
+    m_Metadata:
+      m_Items:
+      - rid: 194774124921618846
+  - m_Id: 360763277443072
+    m_Localized: Game Over
+    m_Metadata:
+      m_Items: []
+  - m_Id: 360990193483776
+    m_Localized: Neustarten
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
@@ -73,3 +86,4 @@ MonoBehaviour:
         m_Entries: 
         m_SharedEntries:
         - id: 15592228651008
+        - id: 360543542050816

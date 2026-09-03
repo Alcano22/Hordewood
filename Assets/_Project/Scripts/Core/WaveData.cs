@@ -1,20 +1,20 @@
-﻿using UnityEngine;
-using UnityEngine.Localization;
-using Hordewood.Enemies;
+﻿using Hordewood.Enemies;
 
 namespace Hordewood.Core
 {
-    [CreateAssetMenu(fileName = "New Wave", menuName = "Hordewood/WaveData")]
-    public class WaveData : ScriptableObject
+    public class WaveData
     {
-        [SerializeField] private float duration = 30f;
-        [SerializeField] private Enemy[] enemyTypes;
-        [SerializeField] private float spawnInterval = 1f;
-        [SerializeField] private int spawnsPerInterval = 1;
+        public float Duration { get; }
+        public Enemy[] EnemyTypes { get; }
+        public float SpawnInterval { get; }
+        public int SpawnsPerInterval { get; }
 
-        public float Duration => duration;
-        public Enemy[] EnemyTypes => enemyTypes;
-        public float SpawnInterval => spawnInterval;
-        public int SpawnsPerInterval => spawnsPerInterval;
+        public WaveData(float duration, Enemy[] enemyTypes, float spawnInterval, int spawnsPerInterval)
+        {
+            Duration = duration;
+            EnemyTypes = enemyTypes;
+            SpawnInterval = spawnInterval;
+            SpawnsPerInterval = spawnsPerInterval;
+        }
     }
 }

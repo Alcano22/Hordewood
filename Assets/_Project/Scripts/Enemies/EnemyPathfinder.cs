@@ -14,15 +14,9 @@ namespace Hordewood.Enemies
         private int _waypointIndex;
         private float _repathTimer;
 
-        private void Awake()
-        {
-            _repathTimer = Random.Range(0f, repathInterval);
-        }
+        private void Awake() => _repathTimer = Random.Range(0f, repathInterval);
 
-        public void SetWorldGenerator(WorldGenerator worldGenerator)
-        {
-            _worldGenerator = worldGenerator;
-        }
+        public void SetWorldGenerator(WorldGenerator worldGenerator) => _worldGenerator = worldGenerator;
 
         public void UpdatePath(Vector2 currentPos, Vector2 targetPos)
         {
@@ -54,6 +48,13 @@ namespace Hordewood.Enemies
             }
 
             return (waypoint - currentPos).normalized;
+        }
+
+        public bool IsValidLandingSpot(Vector2 worldPos)
+        {
+            if (_worldGenerator == null)
+                return false;
+            return _worldGenerator.IsGroundCell(_worldGenerator.WorldToCell(worldPos));
         }
 
         private void OnDrawGizmos()

@@ -16,7 +16,7 @@ namespace Hordewood.Core
             if (CurrentState == newState) return;
 
             CurrentState = newState;
-            Time.timeScale = newState == GameState.Paused ? 0f : 1f;
+            Time.timeScale = (newState == GameState.Paused || newState == GameState.GameOver) ? 0f : 1f;
             OnStateChanged?.Invoke(newState);
         }
     }

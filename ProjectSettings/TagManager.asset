@@ -8,7 +8,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - PlayerBody
   - Water
   - UI
   - EnemyHurtbox
@@ -18,8 +18,8 @@ TagManager:
   - Item
   - StructureHurtbox
   - StructureBody
-  - 
-  - 
+  - EnemyBullet
+  - PlayerHurtbox
   - 
   - 
   - 

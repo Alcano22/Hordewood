@@ -59,6 +59,18 @@ MonoBehaviour:
     m_Key: ui.gun_stat.capacity
     m_Metadata:
       m_Items: []
+  - m_Id: 360763277443072
+    m_Key: ui.game_over.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 360543542050816
+    m_Key: ui.game_over.reached_wave
+    m_Metadata:
+      m_Items: []
+  - m_Id: 360990193483776
+    m_Key: ui.game_over.restart
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

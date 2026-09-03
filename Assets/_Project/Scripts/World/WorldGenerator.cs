@@ -1,7 +1,7 @@
-using Hordewood.Core;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Hordewood.Core;
 
 namespace Hordewood.World
 {
@@ -14,8 +14,8 @@ namespace Hordewood.World
         };
 
         [SerializeField] private Tilemap tilemap;
-        [SerializeField] private TileBase grassTile;
         [SerializeField] private StructureSpawner structureSpawner;
+        [SerializeField] private BiomeManager biomeManager;
 
         [Header("Size")]
         [SerializeField] private int width = 100;
@@ -28,10 +28,16 @@ namespace Hordewood.World
         public event System.Action OnWorldGenerated;
 
         private readonly HashSet<Vector3Int> _blockedCells = new();
-
         private bool[,] _groundGrid;
 
+        private TileBase GroundTile => biomeManager.CurrentBiome.GroundTile;
+
+        private void OnEnable() => biomeManager.OnBiomeChanged += OnBiomeChanged;
+        private void OnDisable() => biomeManager.OnBiomeChanged -= OnBiomeChanged;
+
         private void Start() => Generate();
+
+        private void OnBiomeChanged(BiomeData newBiome) => Generate();
 
         [ContextMenu("Generate World")]
         public void Generate()
@@ -55,7 +61,7 @@ namespace Hordewood.World
                     if (noiseValue < waterThreshold) continue;
 
                     Vector3Int cellPos = new(x - width / 2, y - height / 2, 0);
-                    tilemap.SetTile(cellPos, grassTile);
+                    tilemap.SetTile(cellPos, GroundTile);
                     _groundGrid[x, y] = true;
                 }
             }
@@ -75,7 +81,6 @@ namespace Hordewood.World
         {
             tilemap.ClearAllTiles();
             _blockedCells.Clear();
-            _groundGrid = null;
         }
 
         public void SetBlocked(Vector3Int cellPos, bool blocked)
@@ -86,6 +91,8 @@ namespace Hordewood.World
                 _blockedCells.Remove(cellPos);
         }
 
+        public bool IsBlocked(Vector3Int cellPos) => _blockedCells.Contains(cellPos);
+
         public bool HasGroundTile(Vector3Int cellPos)
         {
             if (!TryToGridIndex(cellPos, out int gx, out int gy))
@@ -93,8 +100,6 @@ namespace Hordewood.World
 
             return _groundGrid[gx, gy];
         }
-
-        public bool IsBlocked(Vector3Int cellPos) => _blockedCells.Contains(cellPos);
 
         public bool IsGroundCell(Vector3Int cellPos) => HasGroundTile(cellPos) && !IsBlocked(cellPos);
         public bool IsGround(Vector2 worldPos) => IsGroundCell(WorldToCell(worldPos));
