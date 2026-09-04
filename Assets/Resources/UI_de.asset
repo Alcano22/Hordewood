@@ -77,6 +77,34 @@ MonoBehaviour:
     m_Localized: Neustarten
     m_Metadata:
       m_Items: []
+  - m_Id: 902493148020736
+    m_Localized: Spielen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 902523040825344
+    m_Localized: Einstellungen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 902579760398336
+    m_Localized: Credits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 902817988476928
+    m_Localized: Beenden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 906253966508032
+    m_Localized: "Zur\xFCck"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 910569284567040
+    m_Localized: Entwicklung & Design
+    m_Metadata:
+      m_Items: []
+  - m_Id: 910656442204160
+    m_Localized: Kunst
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

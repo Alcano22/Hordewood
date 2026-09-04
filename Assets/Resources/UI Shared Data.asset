@@ -71,6 +71,34 @@ MonoBehaviour:
     m_Key: ui.game_over.restart
     m_Metadata:
       m_Items: []
+  - m_Id: 902493148020736
+    m_Key: ui.main_menu.play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 902523040825344
+    m_Key: ui.main_menu.settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 902579760398336
+    m_Key: ui.main_menu.credits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 902817988476928
+    m_Key: ui.main_menu.quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 906253966508032
+    m_Key: ui.main_menu.back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 910569284567040
+    m_Key: ui.main_menu.credits.development_and_design
+    m_Metadata:
+      m_Items: []
+  - m_Id: 910656442204160
+    m_Key: ui.main_menu.credits.art
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
