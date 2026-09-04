@@ -28,9 +28,6 @@ MonoBehaviour:
   - type: 0
     value: 0.2
     isPercentage: 1
-  - type: 1
-    value: -0.1
-    isPercentage: 1
   references:
     version: 2
     RefIds: []

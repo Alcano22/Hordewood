@@ -18,15 +18,16 @@ namespace Hordewood.Localization
         {
             base.Awake();
 
-            if (startupLocale != null)
-                LocalizationSettings.SelectedLocale = startupLocale;
-
             StartCoroutine(InitializeRoutine());
         }
 
         private IEnumerator InitializeRoutine()
         {
             yield return LocalizationSettings.InitializationOperation;
+
+            if (startupLocale)
+                LocalizationSettings.SelectedLocale = startupLocale;
+
             _isReady = true;
         }
 
@@ -38,7 +39,7 @@ namespace Hordewood.Localization
 
         public string GetString(LocalizedString localizedString, params object[] arguments)
         {
-            if (!_isReady)
+            if (!_isReady || localizedString == null || localizedString.IsEmpty)
                 return string.Empty;
 
             if (arguments != null && arguments.Length > 0)

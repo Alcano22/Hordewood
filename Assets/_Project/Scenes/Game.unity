@@ -426,7 +426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b505eb578684924da05d8248d9dc6e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hordewood.Weapon.GunController
-  gun: {fileID: 11400000, guid: a8acaad8fe726ba4994d471df92144ef, type: 2}
+  gun: {fileID: 11400000, guid: e1e66413f7a0cd54f9e05eb721d442ae, type: 2}
   firePoint: {fileID: 556363825}
   weaponPickupPrefab: {fileID: 7098237342491812436, guid: b69ded4036498704ca9954232edb3462, type: 3}
   weaponVisual: {fileID: 2072463548}
@@ -3306,7 +3306,7 @@ GameObject:
   - component: {fileID: 1293604378}
   m_Layer: 3
   m_Name: FeetCollider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
