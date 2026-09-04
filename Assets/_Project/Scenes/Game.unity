@@ -2054,7 +2054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9514ec95877cb3741abe19399fabb928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hordewood.Localization.LocalizationService
-  startupLocale: {fileID: 11400000, guid: acdf6bf5588fd36499a9a249a1ae3e44, type: 2}
+  startupLocale: {fileID: 0}
 --- !u!1 &880620362
 GameObject:
   m_ObjectHideFlags: 0

@@ -77,6 +77,34 @@ MonoBehaviour:
     m_Localized: Restart
     m_Metadata:
       m_Items: []
+  - m_Id: 902493148020736
+    m_Localized: Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 902523040825344
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 902579760398336
+    m_Localized: Credits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 902817988476928
+    m_Localized: Quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 906253966508032
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 910569284567040
+    m_Localized: Development & Design
+    m_Metadata:
+      m_Items: []
+  - m_Id: 910656442204160
+    m_Localized: Art
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
