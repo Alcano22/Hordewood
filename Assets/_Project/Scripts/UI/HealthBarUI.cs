@@ -23,6 +23,14 @@ namespace Hordewood.UI
             UpdateBar(_healthSource.CurrentHealth, _healthSource.MaxHealth);
         }
 
+        private void OnEnable()
+        {
+            if (_healthSource == null) return;
+
+            _healthSource.OnHealthChanged += UpdateBar;
+            UpdateBar(_healthSource.CurrentHealth, _healthSource.MaxHealth);
+        }
+
         private void OnDisable()
         {
             if (_healthSource != null)
